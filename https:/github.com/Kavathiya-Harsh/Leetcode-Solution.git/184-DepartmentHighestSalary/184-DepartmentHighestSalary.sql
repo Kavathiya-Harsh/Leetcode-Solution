@@ -1,0 +1,14 @@
+-- Last updated: 8/11/2026, 2:12:50 PM
+# Write your MySQL query statement below
+SELECT 
+    d.name AS Department,
+    e.name AS Employee,
+    e.salary AS Salary
+FROM Employee e
+JOIN Department d 
+    ON e.departmentId = d.id
+WHERE (e.departmentId, e.salary) IN (
+    SELECT departmentId, MAX(salary)
+    FROM Employee
+    GROUP BY departmentId
+);
